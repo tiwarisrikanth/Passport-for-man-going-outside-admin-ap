@@ -1,0 +1,1055 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Admin Dashboard</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <script>
+        tailwind.config = {
+            theme: {
+                extend: {
+                    colors: {
+                        primary: "#4F46E5",
+                        secondary: "#10B981",
+                    },
+                    borderRadius: {
+                        none: "0px",
+                        sm: "4px",
+                        DEFAULT: "8px",
+                        md: "12px",
+                        lg: "16px",
+                        xl: "20px",
+                        "2xl": "24px",
+                        "3xl": "32px",
+                        full: "9999px",
+                        button: "8px",
+                    },
+                },
+            },
+        };
+    </script>
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link href="https://fonts.googleapis.com/css2?family=Pacifico&display=swap" rel="stylesheet" />
+    <link href="https://cdn.jsdelivr.net/npm/remixicon@4.5.0/fonts/remixicon.css" rel="stylesheet" />
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/echarts/5.5.0/echarts.min.js"></script>
+    <style>
+        :where([class^="ri-"])::before {
+            content: "\f3c2";
+        }
+
+        .table-container::-webkit-scrollbar {
+            width: 6px;
+            height: 6px;
+        }
+
+        .table-container::-webkit-scrollbar-thumb {
+            background: #ddd;
+            border-radius: 3px;
+        }
+
+        .table-container::-webkit-scrollbar-track {
+            background: #f5f5f5;
+        }
+    </style>
+</head>
+
+<body class="bg-gray-50">
+    <div class="flex h-screen">
+        <aside class="w-64 bg-white border-r border-gray-200 overflow-y-auto">
+            <div class="p-6">
+                <h1 class="font-['Poppins'] text-2xl text-primary">Passport for men going outside the state - Admin</h1>
+            </div>
+            <nav class="mt-6">
+                <div class="px-4 py-2 text-sm font-medium text-gray-600">Menu</div>
+                <a href="#" class="flex items-center px-6 py-3 text-gray-700 bg-gray-50 border-l-4 border-primary">
+                    <div class="w-5 h-5 flex items-center justify-center">
+                        <i class="ri-dashboard-line"></i>
+                    </div>
+                    <span class="ml-3">Dashboard</span>
+                </a>
+                <a href="#" class="flex items-center px-6 py-3 text-gray-600 hover:bg-gray-50">
+                    <div class="w-5 h-5 flex items-center justify-center">
+                        <i class="ri-file-list-line"></i>
+                    </div>
+                    <span class="ml-3">Requests</span>
+                </a>
+                <a href="#" class="flex items-center px-6 py-3 text-gray-600 hover:bg-gray-50">
+                    <div class="w-5 h-5 flex items-center justify-center">
+                        <i class="ri-check-line"></i>
+                    </div>
+                    <span class="ml-3">Approvals</span>
+                </a>
+                <a href="#" class="flex items-center px-6 py-3 text-gray-600 hover:bg-gray-50">
+                    <div class="w-5 h-5 flex items-center justify-center">
+                        <i class="ri-close-line"></i>
+                    </div>
+                    <span class="ml-3">Rejections</span>
+                </a>
+                <a href="#" class="flex items-center px-6 py-3 text-gray-600 hover:bg-gray-50">
+                    <div class="w-5 h-5 flex items-center justify-center">
+                        <i class="ri-check-double-line"></i>
+                    </div>
+                    <span class="ml-3">Approvals Completed</span>
+                </a>
+            </nav>
+        </aside>
+        <main class="flex-1 overflow-y-auto">
+            <header class="bg-white border-b border-gray-200">
+                <div class="px-6 py-4 flex items-center justify-between">
+                    <h2 class="text-xl font-semibold text-gray-800">
+                        Dashboard Overview
+                    </h2>
+                    <div class="flex items-center space-x-4">
+                        <button class="!rounded-button p-2 text-gray-600 hover:bg-gray-100">
+                            <div class="w-5 h-5 flex items-center justify-center">
+                                <i class="ri-notification-line"></i>
+                            </div>
+                        </button>
+                        <button class="!rounded-button p-2 text-gray-600 hover:bg-gray-100">
+                            <div class="w-5 h-5 flex items-center justify-center">
+                                <i class="ri-settings-line"></i>
+                            </div>
+                        </button>
+                        <div class="flex items-center">
+                            <img src="https://public.readdy.ai/ai/img_res/931cdb91c502b907408b8e6a8754ec16.jpg"
+                                class="w-8 h-8 rounded-full object-cover" alt="Profile" />
+                            <span class="ml-2 text-sm font-medium text-gray-700">John Anderson</span>
+                        </div>
+                    </div>
+                </div>
+            </header>
+            <div class="p-6">
+                <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-6 mb-6">
+                    <div class="bg-white p-6 rounded-lg shadow-sm border border-gray-200">
+                        <div class="flex items-center justify-between mb-4">
+                            <div class="w-10 h-10 flex items-center justify-center bg-blue-100 rounded-full">
+                                <i class="ri-file-list-line text-blue-600"></i>
+                            </div>
+                            <span class="text-sm text-gray-500">Today: 12</span>
+                        </div>
+                        <h3 class="text-2xl font-bold text-gray-900 mb-1">55</h3>
+                        <p class="text-gray-600">Total Requests</p>
+                    </div>
+                    <div class="bg-white p-6 rounded-lg shadow-sm border border-gray-200">
+                        <div class="flex items-center justify-between mb-4">
+                            <div class="w-10 h-10 flex items-center justify-center bg-green-100 rounded-full">
+                                <i class="ri-check-line text-green-600"></i>
+                            </div>
+                            <span class="text-sm text-gray-500">Today: 8</span>
+                        </div>
+                        <h3 class="text-2xl font-bold text-gray-900 mb-1">30</h3>
+                        <p class="text-gray-600">Total Approved</p>
+                    </div>
+                    <div class="bg-white p-6 rounded-lg shadow-sm border border-gray-200">
+                        <div class="flex items-center justify-between mb-4">
+                            <div class="w-10 h-10 flex items-center justify-center bg-red-100 rounded-full">
+                                <i class="ri-close-line text-red-600"></i>
+                            </div>
+                            <span class="text-sm text-gray-500">Today: 4</span>
+                        </div>
+                        <h3 class="text-2xl font-bold text-gray-900 mb-1">25</h3>
+                        <p class="text-gray-600">Total Rejected</p>
+                    </div>
+                    <div class="bg-white p-6 rounded-lg shadow-sm border border-gray-200">
+                        <div class="flex items-center justify-between mb-4">
+                            <div class="w-10 h-10 flex items-center justify-center bg-purple-100 rounded-full">
+                                <i class="ri-check-double-line text-purple-600"></i>
+                            </div>
+                            <span class="text-sm text-gray-500">Today: 6</span>
+                        </div>
+                        <h3 class="text-2xl font-bold text-gray-900 mb-1">20</h3>
+                        <p class="text-gray-600">Completed Successfully</p>
+                    </div>
+                </div>
+                <div class="grid grid-cols-1 lg:grid-cols-2 gap-6 mb-6">
+                    <div class="bg-white p-6 rounded-lg shadow-sm border border-gray-200">
+                        <h3 class="text-lg font-semibold text-gray-900 mb-4">
+                            Request Trends
+                        </h3>
+                        <div id="trendChart" style="height: 300px;"></div>
+                    </div>
+                    <div class="bg-white p-6 rounded-lg shadow-sm border border-gray-200">
+                        <h3 class="text-lg font-semibold text-gray-900 mb-4">
+                            Approval Status
+                        </h3>
+                        <div id="statusChart" style="height: 300px;"></div>
+                    </div>
+                </div>
+                <div class="bg-white rounded-lg shadow-sm border border-gray-200 overflow-hidden">
+                    <div class="p-6 border-b border-gray-200">
+                        <div class="flex items-center justify-between">
+                            <h3 class="text-lg font-semibold text-gray-900">
+                                Recent Requests
+                            </h3>
+                            <div class="flex items-center space-x-2">
+                                <button
+                                    class="px-4 py-2 text-sm font-medium text-gray-700 bg-white border border-gray-300 !rounded-button hover:bg-gray-50">
+                                    Export CSV
+                                </button>
+                                <button
+                                    class="px-4 py-2 text-sm font-medium text-white bg-primary !rounded-button hover:bg-primary/90">
+                                    New Request
+                                </button>
+                            </div>
+                        </div>
+                        <div class="mt-4 flex items-center space-x-4">
+                            <div class="relative flex-1">
+                                <div class="absolute inset-y-0 left-0 flex items-center pl-3">
+                                    <i class="ri-search-line text-gray-400"></i>
+                                </div>
+                                <input type="text"
+                                    class="w-full pl-10 pr-4 py-2 text-sm text-gray-900 border border-gray-300 rounded-lg focus:ring-2 focus:ring-primary/20 focus:border-primary"
+                                    placeholder="Search requests..." />
+                            </div>
+                            <button
+                                class="px-4 py-2 text-sm font-medium text-gray-700 bg-white border border-gray-300 !rounded-button hover:bg-gray-50">
+                                Filter
+                            </button>
+                        </div>
+                    </div>
+                    <div class="table-container overflow-x-auto shadow-sm">
+                        <table class="w-full border-collapse">
+                            <thead class="bg-gray-50 sticky top-0">
+                                <tr class="border-b border-gray-200">
+                                    <th
+                                        class="px-6 py-4 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">
+                                        Officer
+                                    </th>
+                                    <th
+                                        class="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">
+                                        Request Date
+                                    </th>
+                                    <th
+                                        class="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">
+                                        Status
+                                    </th>
+                                    <th
+                                        class="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">
+                                        Days
+                                    </th>
+                                    <th
+                                        class="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">
+                                        Actions
+                                    </th>
+                                </tr>
+                            </thead>
+                            <tbody class="bg-white divide-y divide-gray-200" id="requestsTableBody"></tbody>
+                        </table>
+                    </div>
+                    <div class="px-6 py-4 border-t border-gray-200">
+                        <div class="flex items-center justify-between">
+                            <div class="text-sm text-gray-700" id="paginationInfo">
+                                Showing <span class="font-medium">1</span> to
+                                <span class="font-medium">10</span> of
+                                <span class="font-medium">55</span> entries
+                            </div>
+                            <div class="flex items-center space-x-2" id="pagination">
+                                <button
+                                    class="px-3 py-1.5 text-sm text-gray-500 bg-white border border-gray-300 !rounded-button hover:bg-gray-50 disabled:opacity-50 transition-all duration-200"
+                                    id="prevBtn" disabled>
+                                    <i class="ri-arrow-left-s-line"></i>
+                                </button>
+                                <div class="flex items-center space-x-1" id="pageNumbers">
+                                    <button
+                                        class="px-3.5 py-1.5 text-sm text-white bg-primary !rounded-button hover:bg-primary/90 transition-all duration-200"
+                                        data-page="1">
+                                        1
+                                    </button>
+                                    <button
+                                        class="px-3.5 py-1.5 text-sm text-gray-700 bg-white border border-gray-300 !rounded-button hover:bg-gray-50 transition-all duration-200"
+                                        data-page="2">
+                                        2
+                                    </button>
+                                    <button
+                                        class="px-3.5 py-1.5 text-sm text-gray-700 bg-white border border-gray-300 !rounded-button hover:bg-gray-50 transition-all duration-200"
+                                        data-page="3">
+                                        3
+                                    </button>
+                                    <button
+                                        class="px-3.5 py-1.5 text-sm text-gray-700 bg-white border border-gray-300 !rounded-button hover:bg-gray-50 transition-all duration-200"
+                                        data-page="4">
+                                        4
+                                    </button>
+                                    <button
+                                        class="px-3.5 py-1.5 text-sm text-gray-700 bg-white border border-gray-300 !rounded-button hover:bg-gray-50 transition-all duration-200"
+                                        data-page="5">
+                                        5
+                                    </button>
+                                </div>
+                                <button
+                                    class="px-3 py-1.5 text-sm text-gray-700 bg-white border border-gray-300 !rounded-button hover:bg-gray-50 transition-all duration-200"
+                                    id="nextBtn">
+                                    <i class="ri-arrow-right-s-line"></i>
+                                </button>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </main>
+    </div>
+    <script>
+        const mockRequests = [
+            {
+                id: "67890",
+                name: "Michael Thompson",
+                image:
+                    "https://public.readdy.ai/ai/img_res/cec7ecfa67375106675ef728bc951713.jpg",
+                date: "Feb 18, 2025",
+                status: "Approved Completed",
+                days: "5 days",
+            },
+            {
+                id: "67890",
+                name: "Michael Thompson",
+                image:
+                    "https://public.readdy.ai/ai/img_res/cec7ecfa67375106675ef728bc951713.jpg",
+                date: "Feb 18, 2025",
+                status: "Approved Completed",
+                days: "5 days",
+            },
+            {
+                id: "67890",
+                name: "Michael Thompson",
+                image:
+                    "https://public.readdy.ai/ai/img_res/cec7ecfa67375106675ef728bc951713.jpg",
+                date: "Feb 18, 2025",
+                status: "Approved Completed",
+                days: "5 days",
+            },
+            {
+                id: "67890",
+                name: "Michael Thompson",
+                image:
+                    "https://public.readdy.ai/ai/img_res/cec7ecfa67375106675ef728bc951713.jpg",
+                date: "Feb 18, 2025",
+                status: "Approved Completed",
+                days: "5 days",
+            },
+            {
+                id: "67890",
+                name: "Michael Thompson",
+                image:
+                    "https://public.readdy.ai/ai/img_res/cec7ecfa67375106675ef728bc951713.jpg",
+                date: "Feb 18, 2025",
+                status: "Approved Completed",
+                days: "5 days",
+            },
+            {
+                id: "67890",
+                name: "Michael Thompson",
+                image:
+                    "https://public.readdy.ai/ai/img_res/cec7ecfa67375106675ef728bc951713.jpg",
+                date: "Feb 18, 2025",
+                status: "Approved Completed",
+                days: "5 days",
+            },
+            {
+                id: "67890",
+                name: "Michael Thompson",
+                image:
+                    "https://public.readdy.ai/ai/img_res/cec7ecfa67375106675ef728bc951713.jpg",
+                date: "Feb 18, 2025",
+                status: "Approved Completed",
+                days: "5 days",
+            },
+            {
+                id: "67890",
+                name: "Michael Thompson",
+                image:
+                    "https://public.readdy.ai/ai/img_res/cec7ecfa67375106675ef728bc951713.jpg",
+                date: "Feb 18, 2025",
+                status: "Approved Completed",
+                days: "5 days",
+            },
+            {
+                id: "67890",
+                name: "Michael Thompson",
+                image:
+                    "https://public.readdy.ai/ai/img_res/cec7ecfa67375106675ef728bc951713.jpg",
+                date: "Feb 18, 2025",
+                status: "Approved Completed",
+                days: "5 days",
+            },
+            {
+                id: "67890",
+                name: "Michael Thompson",
+                image:
+                    "https://public.readdy.ai/ai/img_res/cec7ecfa67375106675ef728bc951713.jpg",
+                date: "Feb 18, 2025",
+                status: "Approved Completed",
+                days: "5 days",
+            },
+            {
+                id: "67890",
+                name: "Michael Thompson",
+                image:
+                    "https://public.readdy.ai/ai/img_res/cec7ecfa67375106675ef728bc951713.jpg",
+                date: "Feb 18, 2025",
+                status: "Approved Completed",
+                days: "5 days",
+            },
+            {
+                id: "67890",
+                name: "Michael Thompson",
+                image:
+                    "https://public.readdy.ai/ai/img_res/cec7ecfa67375106675ef728bc951713.jpg",
+                date: "Feb 18, 2025",
+                status: "Approved Completed",
+                days: "5 days",
+            },
+            {
+                id: "67890",
+                name: "Michael Thompson",
+                image:
+                    "https://public.readdy.ai/ai/img_res/cec7ecfa67375106675ef728bc951713.jpg",
+                date: "Feb 18, 2025",
+                status: "Approved Completed",
+                days: "5 days",
+            },
+            {
+                id: "67890",
+                name: "Michael Thompson",
+                image:
+                    "https://public.readdy.ai/ai/img_res/cec7ecfa67375106675ef728bc951713.jpg",
+                date: "Feb 18, 2025",
+                status: "Approved Completed",
+                days: "5 days",
+            },
+            {
+                id: "67890",
+                name: "Michael Thompson",
+                image:
+                    "https://public.readdy.ai/ai/img_res/cec7ecfa67375106675ef728bc951713.jpg",
+                date: "Feb 18, 2025",
+                status: "Approved Completed",
+                days: "5 days",
+            },
+            {
+                id: "67890",
+                name: "Michael Thompson",
+                image:
+                    "https://public.readdy.ai/ai/img_res/cec7ecfa67375106675ef728bc951713.jpg",
+                date: "Feb 18, 2025",
+                status: "Approved Completed",
+                days: "5 days",
+            },
+            // {
+            //     id: "67891",
+            //     name: "Sarah Williams",
+            //     image:
+            //         "https://public.readdy.ai/ai/img_res/9f54ad5b0746fed80a597c8fe2004489.jpg",
+            //     date: "Feb 17, 2025",
+            //     status: "Pending",
+            //     days: "6 days",
+            // },
+            {
+                id: "67892",
+                name: "David Chen",
+                image:
+                    "https://public.readdy.ai/ai/img_res/7290717cb3e55b124b99d05256a6979b.jpg",
+                date: "Feb 16, 2025",
+                status: "Rejected",
+                days: "7 days",
+            },
+            {
+                id: "67893",
+                name: "Emily Rodriguez",
+                image:
+                    "https://public.readdy.ai/ai/img_res/ce6e5aa4c62f716c6770331a6822be0b.jpg",
+                date: "Feb 15, 2025",
+                status: "Approved Completed",
+                days: "8 days",
+            },
+            {
+                id: "67893",
+                name: "Emily Rodriguez",
+                image:
+                    "https://public.readdy.ai/ai/img_res/ce6e5aa4c62f716c6770331a6822be0b.jpg",
+                date: "Feb 15, 2025",
+                status: "Approved Completed",
+                days: "8 days",
+            },
+            {
+                id: "67893",
+                name: "Emily Rodriguez",
+                image:
+                    "https://public.readdy.ai/ai/img_res/ce6e5aa4c62f716c6770331a6822be0b.jpg",
+                date: "Feb 15, 2025",
+                status: "Approved Completed",
+                days: "8 days",
+            },
+            {
+                id: "67893",
+                name: "Emily Rodriguez",
+                image:
+                    "https://public.readdy.ai/ai/img_res/ce6e5aa4c62f716c6770331a6822be0b.jpg",
+                date: "Feb 15, 2025",
+                status: "Approved Completed",
+                days: "8 days",
+            },
+            {
+                id: "67893",
+                name: "Emily Rodriguez",
+                image:
+                    "https://public.readdy.ai/ai/img_res/ce6e5aa4c62f716c6770331a6822be0b.jpg",
+                date: "Feb 15, 2025",
+                status: "Approved",
+                days: "8 days",
+            },
+            {
+                id: "67893",
+                name: "Emily Rodriguez",
+                image:
+                    "https://public.readdy.ai/ai/img_res/ce6e5aa4c62f716c6770331a6822be0b.jpg",
+                date: "Feb 15, 2025",
+                status: "Approved",
+                days: "8 days",
+            },
+            {
+                id: "67893",
+                name: "Emily Rodriguez",
+                image:
+                    "https://public.readdy.ai/ai/img_res/ce6e5aa4c62f716c6770331a6822be0b.jpg",
+                date: "Feb 15, 2025",
+                status: "Approved",
+                days: "8 days",
+            },
+            {
+                id: "67893",
+                name: "Emily Rodriguez",
+                image:
+                    "https://public.readdy.ai/ai/img_res/ce6e5aa4c62f716c6770331a6822be0b.jpg",
+                date: "Feb 15, 2025",
+                status: "Approved",
+                days: "8 days",
+            },
+            {
+                id: "67893",
+                name: "Emily Rodriguez",
+                image:
+                    "https://public.readdy.ai/ai/img_res/ce6e5aa4c62f716c6770331a6822be0b.jpg",
+                date: "Feb 15, 2025",
+                status: "Approved",
+                days: "8 days",
+            },
+            {
+                id: "67893",
+                name: "Emily Rodriguez",
+                image:
+                    "https://public.readdy.ai/ai/img_res/ce6e5aa4c62f716c6770331a6822be0b.jpg",
+                date: "Feb 15, 2025",
+                status: "Approved",
+                days: "8 days",
+            },
+            {
+                id: "67893",
+                name: "Emily Rodriguez",
+                image:
+                    "https://public.readdy.ai/ai/img_res/ce6e5aa4c62f716c6770331a6822be0b.jpg",
+                date: "Feb 15, 2025",
+                status: "Approved",
+                days: "8 days",
+            },
+            {
+                id: "67894",
+                name: "James Wilson",
+                image:
+                    "https://public.readdy.ai/ai/img_res/6c002c3320d46fd8e31d26cff2ba3c3e.jpg",
+                date: "Feb 14, 2025",
+                status: "Approved",
+                days: "9 days",
+            },
+            {
+                id: "67895",
+                name: "Lisa Anderson",
+                image:
+                    "https://public.readdy.ai/ai/img_res/583730c555954ea009c5de4c1fb3fda5.jpg",
+                date: "Feb 13, 2025",
+                status: "Rejected",
+                days: "10 days",
+            },
+            {
+                id: "67895",
+                name: "Lisa Anderson",
+                image:
+                    "https://public.readdy.ai/ai/img_res/583730c555954ea009c5de4c1fb3fda5.jpg",
+                date: "Feb 13, 2025",
+                status: "Rejected",
+                days: "10 days",
+            },
+            {
+                id: "67895",
+                name: "Lisa Anderson",
+                image:
+                    "https://public.readdy.ai/ai/img_res/583730c555954ea009c5de4c1fb3fda5.jpg",
+                date: "Feb 13, 2025",
+                status: "Rejected",
+                days: "10 days",
+            },
+            // {
+            //     id: "67896",
+            //     name: "Robert Taylor",
+            //     image:
+            //         "https://public.readdy.ai/ai/img_res/e14ca62320c126806e43f7d0ea429998.jpg",
+            //     date: "Feb 12, 2025",
+            //     status: "Pending",
+            //     days: "11 days",
+            // },
+            {
+                id: "67897",
+                name: "Michelle Lee",
+                image:
+                    "https://public.readdy.ai/ai/img_res/1a7b567c3bca42822a81f719d466cf89.jpg",
+                date: "Feb 11, 2025",
+                status: "Approved",
+                days: "12 days",
+            },
+            {
+                id: "67898",
+                name: "Daniel Martinez",
+                image:
+                    "https://public.readdy.ai/ai/img_res/d53106fdf11bc0c743d7061b02a718ea.jpg",
+                date: "Feb 10, 2025",
+                status: "Rejected",
+                days: "13 days",
+            },
+            {
+                id: "67898",
+                name: "Daniel Martinez",
+                image:
+                    "https://public.readdy.ai/ai/img_res/d53106fdf11bc0c743d7061b02a718ea.jpg",
+                date: "Feb 10, 2025",
+                status: "Rejected",
+                days: "13 days",
+            },
+            {
+                id: "67898",
+                name: "Daniel Martinez",
+                image:
+                    "https://public.readdy.ai/ai/img_res/d53106fdf11bc0c743d7061b02a718ea.jpg",
+                date: "Feb 10, 2025",
+                status: "Rejected",
+                days: "13 days",
+            },
+            {
+                id: "67898",
+                name: "Daniel Martinez",
+                image:
+                    "https://public.readdy.ai/ai/img_res/d53106fdf11bc0c743d7061b02a718ea.jpg",
+                date: "Feb 10, 2025",
+                status: "Rejected",
+                days: "13 days",
+            },
+            {
+                id: "67898",
+                name: "Daniel Martinez",
+                image:
+                    "https://public.readdy.ai/ai/img_res/d53106fdf11bc0c743d7061b02a718ea.jpg",
+                date: "Feb 10, 2025",
+                status: "Rejected",
+                days: "13 days",
+            },
+            {
+                id: "67898",
+                name: "Daniel Martinez",
+                image:
+                    "https://public.readdy.ai/ai/img_res/d53106fdf11bc0c743d7061b02a718ea.jpg",
+                date: "Feb 10, 2025",
+                status: "Rejected",
+                days: "13 days",
+            },
+            {
+                id: "67898",
+                name: "Daniel Martinez",
+                image:
+                    "https://public.readdy.ai/ai/img_res/d53106fdf11bc0c743d7061b02a718ea.jpg",
+                date: "Feb 10, 2025",
+                status: "Rejected",
+                days: "13 days",
+            },
+            {
+                id: "67898",
+                name: "Daniel Martinez",
+                image:
+                    "https://public.readdy.ai/ai/img_res/d53106fdf11bc0c743d7061b02a718ea.jpg",
+                date: "Feb 10, 2025",
+                status: "Rejected",
+                days: "13 days",
+            },
+            {
+                id: "67898",
+                name: "Daniel Martinez",
+                image:
+                    "https://public.readdy.ai/ai/img_res/d53106fdf11bc0c743d7061b02a718ea.jpg",
+                date: "Feb 10, 2025",
+                status: "Rejected",
+                days: "13 days",
+            },
+            {
+                id: "67898",
+                name: "Daniel Martinez",
+                image:
+                    "https://public.readdy.ai/ai/img_res/d53106fdf11bc0c743d7061b02a718ea.jpg",
+                date: "Feb 10, 2025",
+                status: "Rejected",
+                days: "13 days",
+            },
+            {
+                id: "67898",
+                name: "Daniel Martinez",
+                image:
+                    "https://public.readdy.ai/ai/img_res/d53106fdf11bc0c743d7061b02a718ea.jpg",
+                date: "Feb 10, 2025",
+                status: "Rejected",
+                days: "13 days",
+            },
+            {
+                id: "67898",
+                name: "Daniel Martinez",
+                image:
+                    "https://public.readdy.ai/ai/img_res/d53106fdf11bc0c743d7061b02a718ea.jpg",
+                date: "Feb 10, 2025",
+                status: "Rejected",
+                days: "13 days",
+            },
+            {
+                id: "67898",
+                name: "Daniel Martinez",
+                image:
+                    "https://public.readdy.ai/ai/img_res/d53106fdf11bc0c743d7061b02a718ea.jpg",
+                date: "Feb 10, 2025",
+                status: "Rejected",
+                days: "13 days",
+            },
+            {
+                id: "67898",
+                name: "Daniel Martinez",
+                image:
+                    "https://public.readdy.ai/ai/img_res/d53106fdf11bc0c743d7061b02a718ea.jpg",
+                date: "Feb 10, 2025",
+                status: "Rejected",
+                days: "13 days",
+            },
+            {
+                id: "67898",
+                name: "Daniel Martinez",
+                image:
+                    "https://public.readdy.ai/ai/img_res/d53106fdf11bc0c743d7061b02a718ea.jpg",
+                date: "Feb 10, 2025",
+                status: "Rejected",
+                days: "13 days",
+            },
+            {
+                id: "67898",
+                name: "Daniel Martinez",
+                image:
+                    "https://public.readdy.ai/ai/img_res/d53106fdf11bc0c743d7061b02a718ea.jpg",
+                date: "Feb 10, 2025",
+                status: "Rejected",
+                days: "13 days",
+            },
+            {
+                id: "67898",
+                name: "Daniel Martinez",
+                image:
+                    "https://public.readdy.ai/ai/img_res/d53106fdf11bc0c743d7061b02a718ea.jpg",
+                date: "Feb 10, 2025",
+                status: "Rejected",
+                days: "13 days",
+            },
+            {
+                id: "67898",
+                name: "Daniel Martinez",
+                image:
+                    "https://public.readdy.ai/ai/img_res/d53106fdf11bc0c743d7061b02a718ea.jpg",
+                date: "Feb 10, 2025",
+                status: "Rejected",
+                days: "13 days",
+            },
+            {
+                id: "67898",
+                name: "Daniel Martinez",
+                image:
+                    "https://public.readdy.ai/ai/img_res/d53106fdf11bc0c743d7061b02a718ea.jpg",
+                date: "Feb 10, 2025",
+                status: "Rejected",
+                days: "13 days",
+            },
+            {
+                id: "67898",
+                name: "Daniel Martinez",
+                image:
+                    "https://public.readdy.ai/ai/img_res/d53106fdf11bc0c743d7061b02a718ea.jpg",
+                date: "Feb 10, 2025",
+                status: "Rejected",
+                days: "13 days",
+            },
+            {
+                id: "67898",
+                name: "Daniel Martinez",
+                image:
+                    "https://public.readdy.ai/ai/img_res/d53106fdf11bc0c743d7061b02a718ea.jpg",
+                date: "Feb 10, 2025",
+                status: "Rejected",
+                days: "13 days",
+            },
+            {
+                id: "67899",
+                name: "Rachel Johnson",
+                image:
+                    "https://public.readdy.ai/ai/img_res/bb7920582563706e18b1d30567dfcfa8.jpg",
+                date: "Feb 09, 2025",
+                status: "Approved",
+                days: "14 days",
+            },
+        ];
+        function getStatusStyle(status) {
+            switch (status) {
+                case "Approved":
+                    return "bg-green-100 text-green-800";
+                case "Rejected":
+                    return "bg-red-100 text-red-800";
+                default:
+                    return "bg-yellow-100 text-yellow-800";
+            }
+        }
+        function renderRequests(requests) {
+            const tableBody = document.getElementById("requestsTableBody");
+            tableBody.innerHTML = requests
+                .map(
+                    (request) => `
+      <tr>
+      <td class="px-6 py-4 whitespace-nowrap">
+      <div class="flex items-center">
+      <img src="${request.image}" class="w-8 h-8 rounded-full object-cover">
+      <div class="ml-3">
+      <div class="text-sm font-medium text-gray-900">${request.name}</div>
+      <div class="text-sm text-gray-500">ID: ${request.id}</div>
+      </div>
+      </div>
+      </td>
+      <td class="px-6 py-4 whitespace-nowrap text-sm text-gray-500">${request.date}</td>
+      <td class="px-6 py-4 whitespace-nowrap">
+      <span class="px-2 inline-flex text-xs leading-5 font-semibold rounded-full ${getStatusStyle(request.status)}">${request.status}</span>
+      </td>
+      <td class="px-6 py-4 whitespace-nowrap text-sm text-gray-500">${request.days}</td>
+      <td class="px-6 py-4 whitespace-nowrap text-sm">
+      <button class="text-primary hover:text-primary/80 mr-3">View Details</button>
+      <button class="text-gray-600 hover:text-gray-900">Edit</button>
+      </td>
+      </tr>
+      `,
+                )
+                .join("");
+        }
+        // Pagination functionality
+        let currentPage = 1;
+        const itemsPerPage = 10;
+        let totalPages = Math.ceil(mockRequests.length / itemsPerPage);
+        let filteredRequests = mockRequests;
+
+        function updatePagination() {
+            const prevBtn = document.getElementById("prevBtn");
+            const nextBtn = document.getElementById("nextBtn");
+            const pageNumbers = document.getElementById("pageNumbers").children;
+            prevBtn.disabled = currentPage === 1;
+            nextBtn.disabled = currentPage === totalPages;
+            Array.from(pageNumbers).forEach((btn) => {
+                const page = parseInt(btn.dataset.page);
+                btn.classList.remove(
+                    "text-white",
+                    "bg-primary",
+                    "hover:bg-primary/90",
+                    "text-gray-700",
+                    "bg-white",
+                    "border",
+                    "border-gray-300",
+                    "hover:bg-gray-50",
+                );
+
+                if (page === currentPage) {
+                    btn.classList.add("text-white", "bg-primary", "hover:bg-primary/90");
+                } else {
+                    btn.classList.add(
+                        "text-gray-700",
+                        "bg-white",
+                        "border",
+                        "border-gray-300",
+                        "hover:bg-gray-50",
+                    );
+                }
+            });
+        }
+        function changePage(page) {
+            currentPage = page;
+            const start = (currentPage - 1) * itemsPerPage;
+            const end = start + itemsPerPage;
+            const paginatedRequests = filteredRequests.slice(start, end);
+            renderRequests(paginatedRequests);
+            updatePagination();
+            document.getElementById("paginationInfo").innerHTML = `
+                Showing <span class="font-medium">${start + 1}</span> to
+                <span class="font-medium">${end}</span> of
+                <span class="font-medium">${filteredRequests.length}</span> entries
+            `;
+        }
+        // Add event listeners for pagination
+        document.getElementById("prevBtn").addEventListener("click", () => {
+            if (currentPage > 1) {
+                changePage(currentPage - 1);
+            }
+        });
+        document.getElementById("nextBtn").addEventListener("click", () => {
+            if (currentPage < totalPages) {
+                changePage(currentPage + 1);
+            }
+        });
+        document.getElementById("pageNumbers").addEventListener("click", (e) => {
+            if (e.target.dataset.page) {
+                changePage(parseInt(e.target.dataset.page));
+            }
+        });
+        // Initial render with pagination
+        changePage(1);
+        // Add click handlers for navigation items
+        document.querySelectorAll("nav a").forEach((link) => {
+            link.addEventListener("click", (e) => {
+                e.preventDefault();
+                const status = e.currentTarget.querySelector("span").textContent;
+                // Remove active state from all links
+                document.querySelectorAll("nav a").forEach((l) => {
+                    l.classList.remove("bg-gray-50", "border-l-4", "border-primary");
+                    l.classList.add("hover:bg-gray-50");
+                });
+                // Add active state to clicked link
+                e.currentTarget.classList.add("bg-gray-50", "border-l-4", "border-primary");
+                e.currentTarget.classList.remove("hover:bg-gray-50");
+                // Filter requests based on navigation item
+                switch (status) {
+                    case "Requests":
+                        filteredRequests = mockRequests;
+                        break;
+                    case "Approvals":
+                        filteredRequests = mockRequests.filter((r) => r.status === "Approved");
+                        break;
+                    case "Rejections":
+                        filteredRequests = mockRequests.filter((r) => r.status === "Rejected");
+                        break;
+                    case "Approvals Completed":
+                        filteredRequests = mockRequests.filter((r) => r.status === "Approved Completed" && r.days.includes("days"));
+                        break;
+                    default:
+                        filteredRequests = mockRequests;
+                }
+                totalPages = Math.ceil(filteredRequests.length / itemsPerPage);
+                changePage(1);
+            });
+        });
+        const trendChart = echarts.init(document.getElementById("trendChart"));
+        const statusChart = echarts.init(document.getElementById("statusChart"));
+        const trendOption = {
+            animation: false,
+            tooltip: {
+                trigger: "axis",
+                backgroundColor: "rgba(255, 255, 255, 0.9)",
+                borderColor: "#eee",
+                borderWidth: 1,
+                textStyle: { color: "#1f2937" },
+            },
+            grid: { top: 20, right: 20, bottom: 20, left: 40 },
+            xAxis: {
+                type: "category",
+                data: ["Mon", "Tue", "Wed", "Thu", "Fri", "Sat", "Sun"],
+                axisLine: { lineStyle: { color: "#eee" } },
+            },
+            yAxis: {
+                type: "value",
+                axisLine: { show: false },
+                axisTick: { show: false },
+                splitLine: { lineStyle: { color: "#eee" } },
+            },
+            series: [
+                {
+                    data: [12, 15, 8, 10, 7, 5, 9],
+                    type: "line",
+                    smooth: true,
+                    symbolSize: 0,
+                    lineStyle: { width: 3 },
+                    itemStyle: { color: "rgba(87, 181, 231, 1)" },
+                    areaStyle: {
+                        color: new echarts.graphic.LinearGradient(0, 0, 0, 1, [
+                            {
+                                offset: 0,
+                                color: "rgba(87, 181, 231, 0.2)",
+                            },
+                            {
+                                offset: 1,
+                                color: "rgba(87, 181, 231, 0)",
+                            },
+                        ]),
+                    },
+                },
+            ],
+        };
+        const statusOption = {
+            animation: false,
+            tooltip: {
+                trigger: "item",
+                backgroundColor: "rgba(255, 255, 255, 0.9)",
+                borderColor: "#eee",
+                borderWidth: 1,
+                textStyle: { color: "#1f2937" },
+            },
+            series: [
+                {
+                    type: "pie",
+                    radius: ["50%", "70%"],
+                    itemStyle: {
+                        borderRadius: 8,
+                        borderColor: "#fff",
+                        borderWidth: 2,
+                    },
+                    label: {
+                        show: false,
+                    },
+                    emphasis: {
+                        label: {
+                            show: true,
+                            fontSize: "14",
+                            fontWeight: "bold",
+                        },
+                    },
+                    data: [
+                        {
+                            value: 30,
+                            name: "Approved",
+                            itemStyle: { color: "rgba(141, 211, 199, 1)" },
+                        },
+                        {
+                            value: 25,
+                            name: "Rejected",
+                            itemStyle: { color: "rgba(251, 191, 114, 1)" },
+                        },
+                        {
+                            value: 20,
+                            name: "Completed",
+                            itemStyle: { color: "rgba(252, 141, 98, 1)" },
+                        },
+                    ],
+                },
+            ],
+        };
+        trendChart.setOption(trendOption);
+        statusChart.setOption(statusOption);
+        window.addEventListener("resize", () => {
+            trendChart.resize();
+            statusChart.resize();
+        });
+    </script>
+</body>
+
+</html>
